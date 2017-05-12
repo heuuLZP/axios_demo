@@ -7,8 +7,9 @@ function fetchTopics () {
     }
   })
   .then(function (response) {
-    let textNode = document.createTextNode(JSON.stringify(response.data))
-    json.appendChild(textNode)
+    // let textNode = document.createTextNode(response.data[0].content)
+    let list = response.data.data
+    json.innerHTML = list[0].content
   })
   .catch(function (error) {
     console.log(error);
