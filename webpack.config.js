@@ -1,11 +1,12 @@
 var path = require('path')
 //引用插件
 var HtmlwebpackPlugin = require('html-webpack-plugin');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: __dirname + "/src",
+    path: __dirname + "/dist",
     filename: "bundle.js"
   },
   module: {
@@ -22,7 +23,9 @@ module.exports = {
   plugins:[
     new HtmlwebpackPlugin({
       filename: 'index.html',
-      template: './src/index.html' //html文件的模板
-    })
+      template: './src/index.html', //html文件的模板
+      inject: true
+    }),
+    new OpenBrowserPlugin({ url: 'http://localhost:8080' + '/dist/index.html' })
   ]
 }
